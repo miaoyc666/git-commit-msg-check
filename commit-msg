@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [[ ! `cat $1 | head -n 1` =~ ^={4}(feat|fix|docs|style|refactor|perf|test|cicd|revert):\<[0-9.]+\>:.*={4}$ ]]; then
+    echo "error commit: `cat $1 | head -n 1`"
+    echo "commit format: ====op:<version>: xxxxx===="
+    echo "op list: feat|fix|docs|style|refactor|perf|test|cicd|revert"
+    echo "e.g.: ====feat:<1.0.1>: 新增某某功能===="
+    echo "e.g.: ====fix:<2.0.3>: bug 1001:修正某某bug===="
+    echo "e.g.: ====docs:<2.2.5.108>: 新增某某说明文档===="
+    exit 1;
+fi
